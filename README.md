@@ -1,11 +1,8 @@
-# MyST book template
+# Cardiac T1 Mapping — interactive MyST book
 
-A starting point for an interactive MyST book that builds and publishes itself to
-GitHub Pages on every push.
-
-Written for GBM8360E Laboratory 2, but there is nothing course-specific in it — reuse
-it for any project that wants prose, executable notebooks and interactive figures in
-one published site.
+Final project for GBM8360E: an extension of the [qMRI mOOC](https://qmrlab.org/mooc/)
+chapter "T1 Mapping", covering cardiac T1 mapping (MOLLI, ShMOLLI, SASHA) and its
+pitfalls, based on Barral, Friedrich & Stikov (2018). Built from the course MyST template.
 
 ## Quick start
 
@@ -45,11 +42,10 @@ them, and the error points at your notebook rather than at the environment.
 ## What's here
 
 ```
-myst.yml                     configuration: title, authors, TOC, bibliography, abbreviations
-index.md                     landing page
-01-getting-started.md        how to build, publish, and debug
-02-interactive-figures.md    the interactive figure pattern + a worked example
-notebooks/figure-demo.ipynb  the Plotly slider demo embedded in chapter 02
+myst.yml                                 configuration: title, authors, TOC, bibliography, abbreviations
+index.md                                 landing page
+01-cardiac-t1.md                         the chapter: text, equations, figures, exercises
+notebooks/fig1_imperfect_inversion.ipynb Figure 1 (imperfect inversion), embedded in the chapter
 bibliography/references.bib  BibTeX entries
 .github/workflows/deploy.yml the build-and-publish Action
 requirements.txt             Python packages, used locally and in CI
@@ -62,8 +58,7 @@ A separate `pdf` job builds a PDF on every push. Actions tab > a run > **Artifac
 non-blocking: a PDF failure never stops your website deploying.
 
 Interactive figures appear in the PDF as static snapshots — each one emits both an
-interactive and a PNG representation, and the renderer picks per medium. See
-`01-getting-started.md`.
+interactive and a PNG representation, and the renderer picks per medium.
 
 ## Things to change first
 
@@ -74,7 +69,7 @@ interactive and a PNG representation, and the renderer picks per medium. See
 ## If the build fails
 
 Actions tab > click the red run > expand the failed step; the real error is near the
-bottom. `01-getting-started.md` lists the common ones. The two you are most likely to
+bottom. The two you are most likely to
 hit first:
 
 | Error in the log | Fix |

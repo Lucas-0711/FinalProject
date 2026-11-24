@@ -1,20 +1,20 @@
 # See docs at: https://mystmd.org/guide/frontmatter
 version: 1
 project:
-  # TODO: make this yours
-  title: 'My MyST Book'
-  subtitle: An interactive book built with MyST
-  # TODO: add yourself. This is the same author schema a real MOOC contribution uses.
+  title: 'Cardiac T1 Mapping'
+  subtitle: MOLLI, ShMOLLI, SASHA and their pitfalls — an extension of the qMRI mOOC
   authors:
-    - name: Your Name
+    - name: Lucas   # TODO: add your full name
       affiliations:
         - Polytechnique Montréal
   copyright: '2026'
   license: CC-BY-4.0
   open_access: true
-  date: 2026-09-16
+  date: 2026-11-24
   keywords:
     - MRI
+    - T1 mapping
+    - cardiac MRI
     - education
 
   numbering:
@@ -34,6 +34,14 @@ project:
     DFT: Discrete Fourier Transform
     SNR: Signal-to-noise ratio
     CSF: Cerebrospinal fluid
+    IR: Inversion recovery
+    TI: Inversion time
+    ECG: Electrocardiogram
+    ECV: Extracellular volume
+    MOLLI: Modified Look-Locker inversion recovery
+    ShMOLLI: Shortened modified Look-Locker inversion recovery
+    SASHA: Saturation recovery single-shot acquisition
+    bSSFP: Balanced steady-state free precession
 
   bibliography:
     - bibliography/references.bib
@@ -52,31 +60,29 @@ project:
     # on it will not appear in the PDF. Put content you want in print on its own page.
     - format: typst
       template: plain_typst_book
-      output: exports/my-myst-book.pdf
+      output: exports/cardiac-t1-mapping.pdf
       # List the pages that belong in the PDF. Without this, the export sweeps in
       # EVERY built page -- including notebooks, which reprint their whole source and
       # a duplicate of the figure. Add new chapters here as well as in `toc`.
       articles:
         - file: index.md
-        - file: 01-getting-started.md
-        - file: 02-interactive-figures.md
+        - file: 01-cardiac-t1.md
 
   toc:
     - file: index.md
-    - file: 01-getting-started.md
-    - file: 02-interactive-figures.md
+    - file: 01-cardiac-t1.md
     # Notebooks must appear in the toc for MyST to build (and execute) them --
     # otherwise `:::{figure} #label` has nothing to embed and silently renders empty.
     # `hidden: true` keeps it built and referenceable without publishing it as a
     # chapter of its own, so the reader gets the figure in context rather than a
     # second copy next to a page of source code.
-    - file: notebooks/figure-demo.ipynb
+    - file: notebooks/fig1_imperfect_inversion.ipynb
       hidden: true
 
 site:
   template: book-theme
   options:
-    logo_text: My MyST Book
+    logo_text: Cardiac T1 Mapping
   actions:
     - title: Source on GitHub
-      url: https://github.com/GBM8360
+      url: https://github.com/Lucas-0711/FinalProject

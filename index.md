@@ -1,36 +1,21 @@
 ---
-title: My MyST Book
-description: An interactive book built with MyST
+title: About this book
+description: An interactive extension of the T1 Mapping chapter of the qMRI mOOC, focused on the heart.
 ---
 
-:::{tip} Start here
-This is a template. Replace this page, and the chapters listed in the sidebar, with
-your own content.
+This book extends the [T1 Mapping chapter](https://qmrlab.org/mooc/t1-mapping) of the
+[Quantitative MRI mOOC](https://qmrlab.org/mooc/) [@boudreau2024].
+That chapter focuses on the brain. Here we look at the heart: why measuring T1 there is
+hard, how the three most common cardiac methods (MOLLI, ShMOLLI and SASHA) work,
+and what can go wrong with each of them.
 
-Your first job is simply to get it **published**: use this template, enable GitHub
-Pages once, and let the Action build your site. Then start writing.
-:::
+The main source is the book chapter *Fundamentals of Cardiac T1 Mapping*
+[@barral2018].
 
-## About this book
+**How to use this book:** every section explains one idea in text, then shows it in an
+interactive figure. Move the sliders, then try the exercises at the end of the section.
+All data are simulated.
 
-**TODO:** replace this with a paragraph about what your book covers.
+## Contents
 
-Built with [MyST Markdown](https://mystmd.org): Markdown for the prose, Jupyter
-notebooks for the computation, one `myst.yml` for the configuration, and a GitHub
-Action that rebuilds and republishes on every push.
-
-## Why interactive?
-
-A static figure is one parameter choice out of infinitely many, frozen at publication.
-The author explored a whole parameter space; the reader gets one frame of it.
-
-An interactive figure hands that space back. It costs almost nothing to add, and it
-often explains in three seconds what a paragraph of caption cannot.
-
-## What's here
-
-- [](./01-getting-started.md) — how to build, publish and debug this book
-- [](./02-interactive-figures.md) — the interactive figure pattern, with a worked example
-
-Add your own pages by creating a `.md` file and listing it in the `toc` section of
-`myst.yml`.
+- [](./01-cardiac-t1.md)
