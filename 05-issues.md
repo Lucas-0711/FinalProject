@@ -7,19 +7,6 @@ numbering:
   equation: true
 ---
 
-## Accuracy and precision
-
-To compare the three methods we need two terms. A method is **accurate** if its result is
-close to the true T1 on average. It is **precise** if repeated measurements of the same
-tissue give almost the same value. A method can be precise but not accurate (always the
-same, but always wrong) or accurate but not precise (correct on average, but scattered).
-
-In practice, a constant error can be accepted as long as the method is reproducible and
-still sensitive to disease [@barral2018]. Precision, on the other hand, decides whether
-a small difference between healthy and diseased myocardium can be detected at all
-[@barral2018]. This page looks at the main issues that affect accuracy and precision of
-MOLLI, ShMOLLI and SASHA.
-
 ## Heart rate
 
 The rest periods of MOLLI are counted in heartbeats, not in milliseconds. At a high heart
@@ -27,8 +14,19 @@ rate, three heartbeats are much shorter than at a low heart rate, so $M_z$ has l
 recover before the next inversion. The next inversion then starts from a smaller $M_z$,
 the images after it no longer lie on the same curve as the others, and the fit
 underestimates T1. This mostly affects tissues with a **long T1**, such as blood, which
-need more time to recover [@barral2018]. It can be reduced by using a single inversion or
-more rest heartbeats [@barral2018].
+need more time to recover [@barral2018]. The effect can be reduced by using a single
+inversion or more rest heartbeats [@barral2018].
+
+Heart rates vary a lot between people. A well-trained athlete can have a resting heart
+rate below 50 beats per minute, while a nervous patient in the scanner can easily be
+above 90. With MOLLI these two people would get different T1 values even if their hearts
+were identical. The problem is even larger with an irregular heartbeat (arrhythmia),
+which is common in older people, because then the rest periods change from one
+heartbeat to the next [@barral2018].
+
+Blood T1 is not only a by-product of the scan. It is needed to calculate the ECV (see
+[](./06-summary.md)), and it can even be used to estimate the hematocrit without a blood
+test [@barral2018]. A wrong blood T1 therefore affects more than one number.
 
 ShMOLLI avoids most of this problem for long T1 because it then only uses the five images
 after the first inversion [@barral2018]. SASHA is not affected in the same way, since every
@@ -53,6 +51,12 @@ heart rate. Real SASHA measurements are not perfect either, but their errors com
 other sources, which are listed at the end of this page.
 
 ## Noise
+
+Heart rate mainly affects the **accuracy** of a method, meaning how close the result is to
+the true T1 on average. Noise affects its **precision**, meaning how much repeated
+measurements of the same tissue scatter. A constant error can be acceptable as long as
+the method is reproducible, but poor precision makes it hard to detect small differences
+between healthy and diseased tissue [@barral2018].
 
 SASHA starts from zero after each saturation pulse, while the inversion methods start
 from $-M_0$. The recovery curve of SASHA therefore covers only half the signal range, which
@@ -116,18 +120,6 @@ tissue did not change.
 :::
 
 :::{exercise}
-:label: ex-hr-shmolli
-Why is the ShMOLLI curve for blood in {numref}`fig-heart-rate` almost flat?
-:::
-
-:::{solution} ex-hr-shmolli
-:class: dropdown
-For long T1, ShMOLLI only fits the five images after the first inversion. These images do
-not depend on how much $M_z$ recovered during rest heartbeats, so the heart rate hardly
-matters.
-:::
-
-:::{exercise}
 :label: ex-snr-sasha
 In {numref}`fig-precision`, MOLLI has an SD of about 17 ms at an SNR of 40. Roughly which
 SNR would SASHA need for the same SD? Since the SNR grows with the square root of the
@@ -139,19 +131,6 @@ number of averages, how much longer would the scan take?
 SASHA has an SD of about 34 ms at SNR 80. Because the SD is inversely proportional to the
 SNR, it needs about SNR 160, which is four times the SNR of MOLLI. This requires
 $4^2 = 16$ times more averaging, so about 16 times the scan time.
-:::
-
-:::{exercise}
-:label: ex-followup
-A patient was measured with MOLLI in 2024 (native T1 = 1000 ms) and with SASHA in 2026
-(native T1 = 1050 ms). Can we conclude that T1 increased?
-:::
-
-:::{solution} ex-followup
-:class: dropdown
-No. MOLLI systematically gives lower values than SASHA, so a difference of 5% can be
-caused by the change of method alone. For follow-up, the same sequence and protocol
-should be used.
 :::
 
 The last page summarizes the three methods and gives some recommendations for using

@@ -74,12 +74,19 @@ no longer starts at $-c$, and at short TI the points lie above the 2-parameter f
 about 9%**. The 3-parameter model fits the angle as an additional unknown and still finds
 the correct T1, but one more unknown also needs more data or a higher SNR.
 
+9% may not sound like much, but think of the myocarditis example from
+[](./01-why-t1-heart.md). There, a patient's T1 is compared with normal values to decide
+whether it is too high [@ferreira2018]. If the method underestimates T1 by several percent
+and the normal values were measured with a more accurate method, an inflamed heart can
+look normal. This is why **normal values are only valid for the method they were measured
+with**.
+
 Two more points are important in practice [@barral2018]. First, the edges of a slice get
 an even weaker inversion, so the effective angle is an average over the slice profile.
 Second, the fit should always be checked visually: plotting the data and the fitted curve
 for a few regions shows quickly whether the model describes the data.
 
-## Exercises
+## Exercise
 
 :::{exercise}
 :label: ex-inversion-5
@@ -93,32 +100,6 @@ About 160°. At this angle $1 - \cos(160°) \approx 1.94$, which is only 3% less
 but the fitted T1 is already 5 to 6% too short.
 :::
 
-:::{exercise}
-:label: ex-inversion-t1
-Does the error in {numref}`fig-inversion` (right) depend strongly on T1? What does this
-mean for a clinic that compares patients using the 2-parameter model?
-:::
-
-:::{solution} ex-inversion-t1
-:class: dropdown
-Only weakly, the three curves are close together. The bias is therefore roughly a
-constant percentage. Patients measured with the same sequence can still be compared
-(reproducibility), but the values are not accurate and should not be compared with other
-sequences or sites without care.
-:::
-
-:::{exercise}
-:label: ex-inversion-time
-Each point on the recovery curve takes about 6 minutes in the heart. How long would a
-gold-standard IR scan with the four TI values from {numref}`fig-inversion` take, and how
-many breath-holds of 20 s would that be?
-:::
-
-:::{solution} ex-inversion-time
-:class: dropdown
-$4 \times 6 = 24$ minutes, which corresponds to $24 \times 60 / 20 = 72$ breath-holds.
-This is why the heart needs faster methods.
-:::
-
-The next section introduces the Look-Locker method, which measures the whole recovery
-curve after a single inversion.
+With four TI values and about 6 minutes per point, a gold-standard scan of the heart
+would take **24 minutes**, which is 72 breath-holds of 20 s. The next section introduces
+the Look-Locker method, which measures the whole recovery curve after a single inversion.

@@ -48,6 +48,9 @@ ShMOLLI ("shortened MOLLI") needs only 9 heartbeats, which makes the breath-hold
 inversion, one heartbeat of rest, one image after the second inversion, one heartbeat of
 rest and one image after the third inversion.
 
+The shorter breath-hold is especially useful for patients who are short of breath, for
+example because of heart failure, and cannot hold their breath for 17 heartbeats.
+
 One heartbeat of rest is not enough for full recovery if T1 is long. The last two images
 are therefore only used when T1 is short enough for $M_z$ to recover almost completely
 in between. For longer T1, only the first five images are fitted [@barral2018]. In our
@@ -122,18 +125,6 @@ and the trends.
 ## Exercises
 
 :::{exercise}
-:label: ex-molli-count
-Count the heartbeats and images of MOLLI 3(3)3(3)5 and ShMOLLI 5(1)1(1)1. How long is
-each breath-hold at 60 beats per minute?
-:::
-
-:::{solution} ex-molli-count
-:class: dropdown
-MOLLI: 3 + 3 + 3 + 3 + 5 = 17 heartbeats with 11 images, so about 17 s. ShMOLLI:
-5 + 1 + 1 + 1 + 1 = 9 heartbeats with 7 images, so about 9 s.
-:::
-
-:::{exercise}
 :label: ex-molli-sorted
 In {numref}`fig-sampling` (MOLLI, myocardium), what is the TI of the second image after
 the first inversion? Why is this image not taken at 200 ms?
@@ -159,14 +150,3 @@ five and would bias the fit. With T1 = 400 ms the recovery is almost complete, a
 two extra images add information.
 :::
 
-:::{exercise}
-:label: ex-sasha-wait
-Why does SASHA not need any rest heartbeats?
-:::
-
-:::{solution} ex-sasha-wait
-:class: dropdown
-The saturation pulse sets $M_z$ to zero no matter what happened before. Every image
-therefore starts from the same known state, and it does not matter whether $M_z$ had
-fully recovered.
-:::

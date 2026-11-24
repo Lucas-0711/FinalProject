@@ -42,6 +42,13 @@ Cardiac T1 mapping is used in two ways [@barral2018]:
   before and after contrast gives the fraction of tissue that is extracellular space,
   which is a marker of fibrosis.
 
+A well-known example is **myocarditis**, an inflammation of the heart muscle that can
+follow a viral infection. The inflamed muscle contains more water, which **raises native
+T1**, and an increased T1 or ECV is one of the two main criteria for diagnosing myocarditis
+with MRI [@ferreira2018]. During the COVID-19 pandemic, US university sports conferences
+used cardiac MRI, including these criteria, to check athletes for myocarditis before they
+were allowed to play again [@daniels2021].
+
 ## Why the heart is difficult
 
 The heart beats and the patient breathes. To get sharp images, the scan is triggered by
