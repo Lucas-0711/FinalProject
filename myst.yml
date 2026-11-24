@@ -44,6 +44,11 @@ project:
     bSSFP: Balanced steady-state free precession
     RR: Time between two heartbeats (from one R-peak of the ECG to the next)
     TS: Saturation time
+    SAR: Specific absorption rate
+    SD: Standard deviation
+    MT: Magnetization transfer
+    SCMR: Society for Cardiovascular Magnetic Resonance
+    NIST: National Institute of Standards and Technology
 
   bibliography:
     - bibliography/references.bib
@@ -72,6 +77,8 @@ project:
         - file: 02-gold-standard.md
         - file: 03-look-locker.md
         - file: 04-molli-shmolli-sasha.md
+        - file: 05-issues.md
+        - file: 06-summary.md
 
   toc:
     - file: index.md
@@ -79,6 +86,8 @@ project:
     - file: 02-gold-standard.md
     - file: 03-look-locker.md
     - file: 04-molli-shmolli-sasha.md
+    - file: 05-issues.md
+    - file: 06-summary.md
     # Notebooks must appear in the toc for MyST to build (and execute) them --
     # otherwise `:::{figure} #label` has nothing to embed and silently renders empty.
     # `hidden: true` keeps it built and referenceable without publishing it as a
@@ -89,6 +98,10 @@ project:
     - file: notebooks/fig2_look_locker.ipynb
       hidden: true
     - file: notebooks/fig3_sampling.ipynb
+      hidden: true
+    - file: notebooks/fig4_heart_rate.ipynb
+      hidden: true
+    - file: notebooks/fig5_precision.ipynb
       hidden: true
 
 site:

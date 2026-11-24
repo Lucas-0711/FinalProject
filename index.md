@@ -20,3 +20,5 @@ figures are simulated.
 - [](./02-gold-standard.md)
 - [](./03-look-locker.md)
 - [](./04-molli-shmolli-sasha.md)
+- [](./05-issues.md)
+- [](./06-summary.md)
