@@ -95,6 +95,8 @@ project:
     # second copy next to a page of source code.
     - file: notebooks/fig1_imperfect_inversion.ipynb
       hidden: true
+    - file: notebooks/fig2a_ll_tip.ipynb
+      hidden: true
     - file: notebooks/fig2_look_locker.ipynb
       hidden: true
     - file: notebooks/fig3_sampling.ipynb

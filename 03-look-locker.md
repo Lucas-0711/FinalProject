@@ -25,11 +25,41 @@ magnetization, enough for the signal, and leaves most of $M_z$ along z.
 
 ## Every readout costs a bit of $M_z$
 
-After a pulse with flip angle $\alpha$, only the fraction $\cos\alpha$ of $M_z$ remains
-along z. For $\alpha = 8°$ this is $\cos 8° \approx 0.99$, so each readout removes about
-1% of $M_z$ [@barral2018]. A single readout has almost no effect, but after 50 readouts
-the difference becomes visible. The table compares muscle (T1 = 1130 ms) with and
-without readouts for $\alpha = 8°$ and one readout every 100 ms:
+A readout pulse with flip angle $\alpha$ tilts the magnetization by $\alpha$ away from the
+z-axis, towards the transverse plane. Only the part $M_z \cos\alpha$ stays along z. The
+tilted part, $M_z \sin\alpha$, lies in the transverse plane, gives the signal and is then
+destroyed (spoiled) before the next readout [@barral2018]. Each readout therefore makes
+$M_z$ **smaller in size, towards zero**. What this means depends on where $M_z$ is:
+
+- When $M_z$ is negative (arrow pointing down), towards zero means up. The tip **helps the
+  recovery**, which is why the curve is ahead at the start.
+- When $M_z$ is positive (arrow pointing up), towards zero means down. The tip **works
+  against the recovery**, which is why the curve never reaches $M_0$.
+
+{numref}`fig-ll-tip` shows this step by step.
+
+:::{figure} #fig-ll-tip-output
+:label: fig-ll-tip
+One Look-Locker readout after another for muscle (T1 = 1130 ms), with a readout every
+200 ms. The flip angle is exaggerated to 20° so that the tip is easy to see. Left: the
+magnetization as an arrow (black) and, for comparison, without readouts (gray). At each
+readout the arrow is tipped by $\alpha$; the blue part stays along z, the orange part is
+the signal and is then spoiled. Right: $M_z$ at each readout compared to the recovery
+without readouts. The slider moves through time, with two positions per readout (before
+and after the tip).
+:::
+
+Directly after the inversion the black arrow points down. The first tip makes its z-part
+shorter, so after the next 200 ms of recovery it is at −0.63 instead of −0.68 without
+readouts: the curve is ahead. Around 1 s it is still slightly ahead (0.23 instead of 0.18).
+Once the arrow points up, every tip pulls it back towards zero, and from about 2 s on it
+falls behind the gray curve (0.60 instead of 0.66). After 3.8 s it is only at 0.74, while
+the gray curve is already at 0.93. The curve levels off at the point where the regrowth
+between two readouts is exactly as large as what one tip removes.
+
+In a real scan the flip angle is smaller, so the effect per readout is smaller. For
+$\alpha = 8°$, $\cos 8° \approx 0.99$, so each readout removes only about 1% of $M_z$
+[@barral2018]. With one readout every 100 ms, the difference still adds up:
 
 | Time after inversion | $M_z/M_0$ without readouts | $M_z/M_0$ with readouts |
 |---|---|---|
@@ -39,19 +69,15 @@ without readouts for $\alpha = 8°$ and one readout every 100 ms:
 | 3000 ms | 0.86 | 0.80 |
 | 4900 ms | 0.97 | 0.89 |
 
-Two things can be seen in the table:
+The same two effects are visible, only smaller: slightly ahead at the start, behind
+later, and the curve settles at about 0.9 instead of 1.
 
-1. At the beginning the curve with readouts is slightly ahead. As long as $M_z$ is
-   negative, each pulse also makes it smaller in magnitude, which pushes it towards zero
-   and helps the recovery. The curve therefore looks as if it recovered faster than T1
-   would allow.
-2. Later it falls behind and does not reach $M_0$. Close to the top, the recovery between
-   two pulses only adds a little magnetization, and at some point this is exactly as much
-   as one pulse removes. In this example the curve settles at about 0.9 instead of 1.
-
-When an exponential is fitted to these points, the resulting time constant is too
-short. It is called the apparent T1 and written T1\*. With $\alpha = 8°$ and a readout
-every 100 ms, T1\* is about 1018 ms instead of 1130 ms, so 10% too short.
+When we fit an exponential to these points, we get the time constant of the *measured*
+curve. It is not the T1 of the tissue, because every readout disturbs the recovery. We
+call it the apparent T1, written T1\*. **T1 is a property of the tissue, T1\* is a property
+of the tissue and the measurement**: it also depends on the flip angle $\alpha$ and on how
+often we read out. With $\alpha = 8°$ and a readout every 100 ms, T1\* is about 1018 ms
+instead of 1130 ms, so 10% too short.
 
 ## The equations
 

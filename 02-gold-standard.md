@@ -11,7 +11,9 @@ numbering:
 
 In IR, a 180° pulse flips $M_z$ from $+M_0$ to $-M_0$. After waiting a time TI, an image
 is taken. Repeating this for several TI values samples the recovery curve, and fitting an
-exponential to these points gives T1 [@barral2018].
+exponential to these points gives T1 [@barral2018]. Before each new inversion, $M_z$ has
+to recover almost completely, which takes about 5 T1. This waiting is what makes the
+method so slow.
 
 If the inversion is perfect (exactly 180°) and TR is long enough for full recovery
 (TR much longer than T1), the signal is
@@ -61,18 +63,22 @@ the fitted T1.
 :::{figure} #fig-inversion-output
 :label: fig-inversion
 Effect of an imperfect inversion on the fitted T1. Left: simulated IR signal of muscle
-(T1 = 1130 ms) for the inversion angle chosen with the slider, fitted with the
-2-parameter model ({eq}`eq-ir-2p`) and the 3-parameter model. Right: error of the
-2-parameter fit as a function of the inversion angle for three T1 values. The TI values
-are 50, 400, 1100 and 2500 ms, as recommended for gold-standard IR [@barral2018]. The
-data are noise-free.
+(T1 = 1130 ms) for the inversion angle chosen with the slider. The orange bar shows how
+far the real starting point is from a perfect inversion. The red dashed line is the fit
+with the 2-parameter model ({eq}`eq-ir-2p`); the 3-parameter fit lies exactly on the gray
+curve and is only listed in the legend. Right: error of the 2-parameter fit as a function
+of the inversion angle. The TI values are 50, 400, 1100 and 2500 ms, as recommended for
+gold-standard IR [@barral2018]. The data are noise-free.
 :::
 
-At 180° both fits go through the data points and the error is zero. At 155° the curve
-no longer starts at $-c$, and at short TI the points lie above the 2-parameter fit. The
-2-parameter model compensates for this with a shorter T1, which **underestimates T1 by
-about 9%**. The 3-parameter model fits the angle as an additional unknown and still finds
-the correct T1, but one more unknown also needs more data or a higher SNR.
+At 180° both fits go through the data points and the error is zero. At 155° the inversion
+only brings $M_z$ to about −0.91 instead of −1, so the measured curve starts higher (orange
+bar). The 2-parameter model, however, assumes that the curve starts exactly as far below
+zero as it ends above zero (from $-c$ to $+c$). To still pass close to the points, it has
+to rise faster, and a faster rise means a shorter T1. The fit gives 1029 ms instead of
+1130 ms, so it **underestimates T1 by about 9%**. The 3-parameter model fits the starting
+point as an additional unknown and still finds the correct T1, but one more unknown also
+needs more data or a higher SNR.
 
 9% may not sound like much, but think of the myocarditis example from
 [](./01-why-t1-heart.md). There, a patient's T1 is compared with normal values to decide
