@@ -1,4 +1,4 @@
-# Cardiac T1 Mapping — interactive MyST book
+# Cardiac T1 Mapping, interactive MyST book
 
 Final project for GBM8360E: an extension of the [qMRI mOOC](https://qmrlab.org/mooc/)
 chapter "T1 Mapping", covering cardiac T1 mapping (MOLLI, ShMOLLI, SASHA) and its
@@ -10,7 +10,7 @@ pitfalls, based on Barral, Friedrich & Stikov (2018). Built from the course MyST
    owner `GBM8360`.
 
 2. **The first Action run will fail. This is expected.** GitHub Pages is off by default
-   on a new repository, and a workflow cannot switch it on for you — creating a Pages
+   on a new repository, and a workflow cannot switch it on for you, creating a Pages
    site needs *admin* rights, and the token a workflow gets only has *write*. So you do
    it once, by hand:
 
@@ -44,8 +44,8 @@ them, and the error points at your notebook rather than at the environment.
 ```
 myst.yml                                 configuration: title, authors, TOC, bibliography, abbreviations
 index.md                                 landing page
-01-cardiac-t1.md                         the chapter: text, equations, figures, exercises
-notebooks/fig1_imperfect_inversion.ipynb Figure 1 (imperfect inversion), embedded in the chapter
+01-...04-*.md                            one page per section: text, equations, figures, exercises
+notebooks/fig1_imperfect_inversion.ipynb Figure 1 (imperfect inversion); fig2, fig3 likewise
 bibliography/references.bib  BibTeX entries
 .github/workflows/deploy.yml the build-and-publish Action
 requirements.txt             Python packages, used locally and in CI
@@ -57,7 +57,7 @@ A separate `pdf` job builds a PDF on every push. Actions tab > a run > **Artifac
 `book-pdf`. It installs LaTeX so it is slower than the site build, and it is
 non-blocking: a PDF failure never stops your website deploying.
 
-Interactive figures appear in the PDF as static snapshots — each one emits both an
+Interactive figures appear in the PDF as static snapshots, each one emits both an
 interactive and a PNG representation, and the renderer picks per medium.
 
 ## Things to change first
@@ -74,7 +74,7 @@ hit first:
 
 | Error in the log | Fix |
 |---|---|
-| `Create Pages site failed. Error: Resource not accessible by integration` | Pages isn't enabled yet — do step 2 above, then re-run |
+| `Create Pages site failed. Error: Resource not accessible by integration` | Pages isn't enabled yet, do step 2 above, then re-run |
 | `Resource not accessible by integration` on **deploy**, with `Pages: read` in the job's token list | The organization has workflow permissions set to read-only. An org owner must set *Settings > Actions > General > Workflow permissions* to **Read and write** |
 
 **Fallback:** if `myst build --html --execute` misbehaves in CI, drop `--execute` from
