@@ -74,36 +74,34 @@ project:
       articles:
         - file: index.md
         - file: 01-why-t1-heart.md
-        - file: 02-gold-standard.md
-        - file: 03-look-locker.md
-        - file: 04-molli-shmolli-sasha.md
-        - file: 05-issues.md
-        - file: 06-summary.md
+        - file: 02-look-locker.md
+        - file: 03-molli-shmolli-sasha.md
+        - file: 04-issues.md
+        - file: 05-summary.md
 
   toc:
     - file: index.md
     - file: 01-why-t1-heart.md
-    - file: 02-gold-standard.md
-    - file: 03-look-locker.md
-    - file: 04-molli-shmolli-sasha.md
-    - file: 05-issues.md
-    - file: 06-summary.md
+    - file: 02-look-locker.md
+    - file: 03-molli-shmolli-sasha.md
+    - file: 04-issues.md
+    - file: 05-summary.md
     # Notebooks must appear in the toc for MyST to build (and execute) them --
     # otherwise `:::{figure} #label` has nothing to embed and silently renders empty.
     # `hidden: true` keeps it built and referenceable without publishing it as a
     # chapter of its own, so the reader gets the figure in context rather than a
     # second copy next to a page of source code.
-    - file: notebooks/fig1_imperfect_inversion.ipynb
+    - file: notebooks/fig1_ll_readouts.ipynb
       hidden: true
-    - file: notebooks/fig2a_ll_tip.ipynb
+    - file: notebooks/fig2_side_by_side.ipynb
       hidden: true
-    - file: notebooks/fig2_look_locker.ipynb
+    - file: notebooks/fig3_heart_rate.ipynb
       hidden: true
-    - file: notebooks/fig3_sampling.ipynb
+    - file: notebooks/fig4_precision.ipynb
       hidden: true
-    - file: notebooks/fig4_heart_rate.ipynb
+    - file: notebooks/fig4b_mt.ipynb
       hidden: true
-    - file: notebooks/fig5_precision.ipynb
+    - file: notebooks/fig5_pig_hearts.ipynb
       hidden: true
 
 site:
