@@ -1,4 +1,4 @@
-"""Shared toy simulation of MOLLI, ShMOLLI and SASHA, used by Figures 3, 4 and 5.
+"""Shared simplified simulation of MOLLI, ShMOLLI and SASHA, used by several figures.
 
 Simplifications (stated in the book):
 - perfect inversion and saturation pulses,

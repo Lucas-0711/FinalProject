@@ -32,7 +32,8 @@ tissue is chosen with the dropdown menu. Left: $M_z$ during the scan with the he
 the preparation pulses (inversion or saturation) and the images, on the same time axis for
 all three methods. The diamonds give $M_z$ just before each inversion; the dashed line
 marks full recovery. Right: the same images sorted by their time after the last preparation
-pulse, with the fitted curve and the resulting T1. Both panels of a row use the same
+pulse, with the fitted curve (dashed), the resulting T1, and the ideal recovery without
+any readouts (thick gray) for comparison. Both panels of a row use the same
 y-axis, and each image has the same colour on both sides: the colour shows after which
 inversion (or saturation) it was taken. Hollow images are not used in the fit. Hovering
 over an image shows its number, its TI or TS and its $M_z$.
@@ -111,8 +112,14 @@ inversion methods, which makes it more sensitive to noise [@barral2018].
   MOLLI row $M_z$ only reaches 0.95 before the second inversion (0.99 for myocardium), and
   MOLLI gives 1477 ms instead of 1600 ms (−7.7%). In the ShMOLLI row the diamonds show
   0.88 and 0.48, and the last two images (green and purple) are hollow because they are not used.
+- Compare the images of MOLLI and ShMOLLI with the thick gray ideal recovery. The early
+  images lie slightly **above** it and the late ones **below** it. These are the same two
+  effects as in {numref}`fig-ll-tip`: while $M_z$ is negative the readouts push it towards
+  zero, once it is positive they pull it down. The fit therefore gives T1\*, which is then
+  corrected as explained in the previous section.
 - Look at the SASHA row. Every image starts again from zero after its saturation pulse, so
-  nothing from the previous heartbeat matters, and the fit finds the true T1.
+  nothing from the previous heartbeat matters. The images lie on the ideal curve, and the
+  fit finds the true T1.
 - Switch to **myocardium after contrast** (T1 = 400 ms). All diamonds are close to 1, so
   every inversion starts from full recovery, and all three methods are almost exact. In
   the ShMOLLI row images 6 and 7 are filled again and fill the steep early part of the

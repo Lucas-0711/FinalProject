@@ -69,20 +69,21 @@ simulated scan 500 times with random noise and shows all the T1 values as a hist
 :label: fig-precision
 Distribution of the fitted T1 for 500 simulated scans of native myocardium
 (T1 = 1000 ms, 60 beats per minute) with random Gaussian noise, one panel per method. The
-slider sets the SNR, defined as $M_0$ divided by the standard deviation of the noise, for
-all three panels at once. Each panel gives the mean ± standard deviation (SD). The dashed
+slider sets the SNR from 10 to 100, defined as $M_0$ divided by the standard deviation of
+the noise, for all three panels at once. Each panel gives the mean ± standard deviation (SD). The dashed
 line marks the true T1.
 :::
 
 **Try this** in {numref}`fig-precision`:
 
 - At SNR 40, compare where the middle of each histogram sits (accuracy) and how wide it
-  is (precision). MOLLI gives 962 ± 17 ms (mean ± SD): narrow, but its mean is to the left of
-  the true value. SASHA gives 1002 ± 70 ms: its mean is on the true value, but the
-  histogram is about four times wider. ShMOLLI (947 ± 33 ms) lies in between, because it
+  is (precision). MOLLI gives 961 ± 18 ms (mean ± SD): narrow, but its mean is to the left of
+  the true value. SASHA gives 1003 ± 71 ms: its mean is on the true value, but the
+  histogram is about four times wider. ShMOLLI (946 ± 31 ms) lies in between, because it
   uses fewer images than MOLLI (7 instead of 11).
-- Move the slider to SNR 80. All histograms become narrower, but MOLLI and ShMOLLI stay
-  shifted. More signal fixes noise, not bias. To be as precise as MOLLI, SASHA would need
+- Slowly move the slider from SNR 10 to 100. All histograms become narrower, but MOLLI and
+  ShMOLLI stay shifted. At very low SNR (10 to 15) SASHA's histogram becomes so wide
+  that some values fall outside the plot. More signal fixes noise, not bias. To be as precise as MOLLI, SASHA would need
   about four times the SNR, which means about 16 times longer averaging.
 
 ## Magnetization transfer
@@ -92,20 +93,28 @@ move freely. Another part is bound to large molecules such as proteins. Its sign
 disappears far too quickly to be measured, so it is invisible. The two parts constantly
 exchange magnetization. This is called **magnetization transfer (MT)** [@hafyane2018].
 
-MOLLI and ShMOLLI play many RF pulses during their images. These pulses also hit the
-invisible hydrogen and take away some of its magnetization. Through the exchange, the
-visible water then loses magnetization as well. For the visible water this acts like
-additional readouts: the curve settles lower, the fit sees a faster recovery and **T1 comes
-out too low**. More detailed simulations found that MT alone lowers MOLLI's T1 by at least
-10%, while SASHA is affected much less [@robson2013; @hafyane2018]. {numref}`fig-mt` shows
-the effect in a simple model with a visible and an invisible pool.
+How much hydrogen is bound depends on the tissue. Fluids are mostly free water, while
+tissues with many proteins, such as heart muscle, have a larger bound part. Disease can
+change it as well: swollen (edematous) heart muscle, which contains extra water, shows less
+MT than healthy muscle [@stromp2015]. **The error that MT causes therefore depends on the
+tissue being measured.**
+
+Why does MT lower the T1 of MOLLI and ShMOLLI? An inversion pulse flips the visible water to
+$-M_0$, but it cannot flip the invisible part; it only empties it to zero. Right after the
+inversion the two parts exchange magnetization, and the visible water is pulled towards
+zero by its less negative partner. The many RF pulses of each image keep emptying the
+invisible part, so this continues during the whole scan. The visible water therefore
+**seems to recover faster** than its own T1, and the fit gives a **T1 that is too low**.
+More detailed simulations found that MT alone lowers MOLLI's T1 by at least 10%, while
+SASHA is affected much less [@robson2013; @hafyane2018]. {numref}`fig-mt` shows the effect
+in a simple model with a visible and an invisible pool.
 
 :::{figure} #fig-mt-output
 :label: fig-mt
-Toy model of magnetization transfer for native myocardium (T1 = 1000 ms, 60 beats per
+Simplified model of magnetization transfer for native myocardium (T1 = 1000 ms, 60 beats per
 minute). The slider sets the size of the invisible (bound) pool relative to the visible
-water. Left: the MOLLI images and their fit with MT (blue), compared to the fit without MT
-(gray). Right: the fitted T1 of all three methods as a function of the size of the
+water. Left: the MOLLI images and their fit with MT (blue), compared to the images and
+the fit without MT (gray). Right: the fitted T1 of all three methods as a function of the size of the
 invisible pool; the diamonds mark the current slider position and the dashed line the
 true T1. Each image saturates 30% of the invisible pool; inversion and saturation pulses
 saturate it completely. The numbers only show the trend.
@@ -115,18 +124,20 @@ saturate it completely. The numbers only show the trend.
 
 - Set the slider to 0%. Without MT, MOLLI gives 961 ms, the same as in
   {numref}`fig-side-by-side`.
-- Move it to 10% and then 20%. The blue images settle lower than the gray curve, and MOLLI's
+- Move it to 10% and then 20% and watch the first three images on the left. They move up,
+  closer to zero: the earliest one goes from −0.81 (gray, no MT) to −0.73 and −0.68. The
+  late images hardly change. The curve looks steeper, as if it recovered faster, so MOLLI's
   T1 drops to 873 ms and 808 ms. ShMOLLI behaves the same way.
 - Look at SASHA on the right: it stays at the true value. Its saturation pulses empty both
   pools before every image anyway, so the fit is not misled.
 
 ## Measurements in pig hearts
 
-Simulations can only show what we put into them. To test whether MT really matters, six pig
-hearts were measured with MOLLI, ShMOLLI, SASHA and with a slow inversion recovery scan as
-the reference [@hafyane2018]. For each heart, the amount of MT and the T2 were measured as
-well. After three weeks the hearts were put into formalin, a preservative that changes the
-tissue, to see whether the results still hold for different tissue.
+Our MT figure is only a simulation. Two questions remain: do the cardiac methods really get
+T1 wrong in real tissue, and is MT really the reason? A study with six pig hearts answered
+both [@hafyane2018]. The hearts were measured with MOLLI, ShMOLLI, SASHA and with a slow
+inversion recovery scan as the reference, and the amount of MT and T2 was measured in each
+heart.
 
 :::{figure} #fig-pig-hearts-output
 :label: fig-pig-hearts
@@ -137,13 +148,15 @@ Table 1 of [@hafyane2018]. Note that this study used a MOLLI scheme with two inv
 5(3)3, at a simulated heart rate of 60 beats per minute.
 :::
 
-In the fresh hearts, MOLLI was 11% and ShMOLLI 17% **below** the reference, and SASHA 4%
-**above** it ({numref}`fig-pig-hearts`). How large the error was in each heart depended
-only weakly on T2, but strongly on the amount of MT, for all three methods and also after
-fixation. So SASHA is not completely free of MT either, even though its error is small and
-our toy model shows no effect for it. The conclusion is that **MT is the main reason why
-cardiac T1 values are inaccurate** [@hafyane2018]. It also explains why the three methods agree well in phantoms,
-which contain little MT, but disagree in real tissue [@hafyane2018; @barral2018].
+**The answer to the first question is yes:** MOLLI was 11% and ShMOLLI 17% below the
+reference, and SASHA 4% above it ({numref}`fig-pig-hearts`). **The answer to the second
+question is also yes:** the larger the MT in a heart, the larger the error, while T2 could
+not explain it [@hafyane2018]. To check that this is not a coincidence of one tissue state,
+the hearts were then put into formalin, a preservative that changes the tissue: T1 dropped
+by about a third, and T2 and MT by about a sixth. The link between MT and the error
+remained. This is why **MT is considered the main cause of inaccurate cardiac T1 values**,
+and why the methods agree in phantoms, which contain little MT, but not in patients
+[@hafyane2018; @barral2018].
 
 ## Other effects
 

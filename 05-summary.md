@@ -34,7 +34,7 @@ numbering:
 | How T1 is obtained | Look-Locker fit + $B/A$ correction | Look-Locker fit + $B/A$ correction | saturation-recovery fit |
 | Accuracy, simulation (native myocardium) | −4% | −5% | exact |
 | Accuracy, pig hearts [@hafyane2018] | −11% | −17% | +4% |
-| Precision, simulation (SD at SNR 40) | 17 ms (best) | 33 ms | 70 ms (worst) |
+| Precision, simulation (SD at SNR 40) | 18 ms (best) | 31 ms | 71 ms (worst) |
 | Blood at 90 beats per minute, simulation | −13% | −6% | exact |
 | Sensitive to MT | strongly | strongly | less, but measurable |
 | Sensitive to T2 and off-resonance | yes | yes | hardly |
